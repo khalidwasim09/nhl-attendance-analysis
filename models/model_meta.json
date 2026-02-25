@@ -1,0 +1,67 @@
+{
+  "best_model": "Ridge Regression",
+  "metrics": {
+    "model": "Ridge Regression",
+    "rmse": 864.3016122310586,
+    "mae": 683.3458140682809,
+    "r2": 0.640021995777848,
+    "mape": 4.12912639046859
+  },
+  "all_results": [
+    {
+      "model": "Ridge Regression",
+      "rmse": 864.3016122310586,
+      "mae": 683.3458140682809,
+      "r2": 0.640021995777848,
+      "mape": 4.12912639046859
+    },
+    {
+      "model": "Random Forest",
+      "rmse": 910.8207335256026,
+      "mae": 723.2511691801596,
+      "r2": 0.6002291395908084,
+      "mape": 4.370384613854073
+    },
+    {
+      "model": "Gradient Boosting",
+      "rmse": 889.1532745473536,
+      "mae": 698.3128281487047,
+      "r2": 0.6190231531339838,
+      "mape": 4.227624715493137
+    },
+    {
+      "model": "XGBoost",
+      "rmse": 883.2979749212607,
+      "mae": 689.8685913085938,
+      "r2": 0.6240242719650269,
+      "mape": 4.173436575758815
+    }
+  ],
+  "n_train": 2211,
+  "n_test": 391,
+  "feature_cols": [
+    "day_of_week",
+    "month",
+    "is_weekend",
+    "is_saturday",
+    "near_holiday",
+    "is_early_season",
+    "is_late_season",
+    "is_playoff_push",
+    "home_win_pct",
+    "away_win_pct",
+    "combined_win_pct",
+    "win_pct_diff",
+    "home_elo",
+    "away_elo",
+    "elo_diff",
+    "elo_sum",
+    "is_original_six",
+    "is_historic_rivalry",
+    "home_back_to_back",
+    "away_back_to_back",
+    "arena_capacity",
+    "home_team_enc",
+    "away_team_enc"
+  ]
+}
