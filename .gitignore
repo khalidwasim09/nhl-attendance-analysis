@@ -9,7 +9,6 @@ env/
 dist/
 build/
 .ipynb_checkpoints/
-models/*.joblib
 models/*.png
 data/
 *.DS_Store
