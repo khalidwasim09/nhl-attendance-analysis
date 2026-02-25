@@ -88,32 +88,32 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Load Model ─────────────────────────────────────────────────────────────────
-APP_DIR = os.path.dirname(os.path.abspath(__file__))          # .../app
-REPO_ROOT = os.path.dirname(APP_DIR)                          # repo root
-MODEL_DIR = os.path.join(REPO_ROOT, "models")                 # .../models
+APP_DIR = os.path.dirname(os.path.abspath(__file__))   # .../app
+REPO_ROOT = os.path.dirname(APP_DIR)                   # repo root
+MODEL_DIR = os.path.join(REPO_ROOT, "models")
 
 @st.cache_resource
 def load_model():
-    try:
-        model_path = os.path.join(MODEL_DIR, "best_model.joblib")
-        enc_path = os.path.join(MODEL_DIR, "encoders.joblib")
-        feat_path = os.path.join(MODEL_DIR, "feature_cols.joblib")
-        meta_path = os.path.join(MODEL_DIR, "model_meta.json")
+    model_path = os.path.join(MODEL_DIR, "best_model.joblib")
+    enc_path   = os.path.join(MODEL_DIR, "encoders.joblib")
+    feat_path  = os.path.join(MODEL_DIR, "feature_cols.joblib")
+    meta_path  = os.path.join(MODEL_DIR, "model_meta.json")
 
-        # Debug info (remove later if you want)
-        # st.write("MODEL_DIR:", MODEL_DIR)
-        # st.write("Files:", os.listdir(MODEL_DIR))
+    model = joblib.load(model_path)
+    encoders = joblib.load(enc_path)
+    feature_cols = joblib.load(feat_path)
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta = json.load(f)
 
-        model = joblib.load(model_path)
-        encoders = joblib.load(enc_path)
-        feature_cols = joblib.load(feat_path)
-        with open(meta_path, "r", encoding="utf-8") as f:
-            meta = json.load(f)
+    return model, encoders, feature_cols, meta
 
-        return model, encoders, feature_cols, meta
-
-    except Exception:
-        return None, None, None, None
+# IMPORTANT: always define these variables
+try:
+    model, encoders, feature_cols, model_meta = load_model()
+except Exception as e:
+    model, encoders, feature_cols, model_meta = None, None, None, None
+    st.error(f"Model load failed: {e}")
+    st.stop()
 # ── Header ─────────────────────────────────────────────────────────────────────
 st.markdown('<p class="main-header">🏒 NHL Attendance Predictor</p>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">ML-powered game attendance forecasting for arena operations and revenue planning</p>', unsafe_allow_html=True)
